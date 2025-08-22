@@ -1,0 +1,13 @@
+#outer-box {
+  width: 400px;
+  height: 400px;
+  padding: 50px;
+  background-color: teal;
+  box-sizing: border-box;
+}
+#inner-box {
+  width: 200px;
+  height: 200px;
+  background-color: salmon;
+  border: 50px solid pink;
+}
