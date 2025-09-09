@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> StopWatch </h1>
+    <button id="stopwatch">Start/Pause</button>
+    <button id="reset">reset</button>
+    <script>
+        "use strict"
+        let timeId = null;
+        let reset = document.getElementById("reset");
+        let count = 0;
+
+        document.getElementById("stopwatch").addEventListener("click",function() {
+            if(timeId === null){
+                timeId = setInterval(() => {
+                    count++;
+                    console.log(count + " seconds");
+                }, 1000);
+            }else{
+                clearInterval(timeId);
+                timeId = null;
+            }
+        });
+        reset.addEventListener("click", function() {
+            count = 0;
+            console.log("reset to 0 seconds");
+        })
+    </script>
+</body>
+</html>
