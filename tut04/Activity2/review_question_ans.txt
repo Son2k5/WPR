@@ -1,0 +1,25 @@
+
+Question 1:
+Thứ tự log: 1 → 3 → 2
+Giải thích: '1' in ra ngay khi khởi tạo Promise, '3' in ra sau khi tạo promise, 
+còn '2' chỉ xuất hiện sau khi setTimeout hết 1s.
+
+Question 2:
+Nếu không click trong 5s, promise sẽ bị reject → in ra "Option B".
+
+Question 3:
+Nếu click sau 5s: setTimeout đã reject trước, nên promise đã kết thúc. 
+Do đó "Option B" in ra, và "clicked!" vẫn in ra vì event listener chạy độc lập.
+
+Question 4:
+Kết quả: 36
+Giải thích: resolve(1) → add(1+5=6) → multiply(6*6=36).
+
+Question 5:
+Kết quả: 6
+Giải thích: resolve(1) → add(1+5=6) (trả về Promise) → log ra 6.
+
+Question 6:
+Thứ tự log: 1 → 3 → 2
+Giải thích: '1' in ngay khi tạo Promise, resolve('2') được xử lý trong then (async), 
+nên '3' in ra trước, sau đó mới in '2'.

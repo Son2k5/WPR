@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <h2>Activity 3 – Rejecting a Promise with Button Click</h2>
+    <button id="cancelBtn">Cancel Promise</button>
+    <div id="status"></div>
+    <script>
+        const cancelBtn = document.getElementById("cancelBtn");
+        const statusDiv = document.getElementById("status");
+
+        function CoutDownPromise() {
+            const result = new Promise((resolve, reject) =>{
+                let count = 5;
+                statusDiv.textContent = `Promise resolve in ${count} seconds`;
+                const timer = setInterval(() =>{
+                    count--;
+                    if(count > 0){
+                        statusDiv.textContent = `Promise resolve in ${count} seconds`;
+                    }else{
+                        clearInterval(timer);
+                        resolve("Promise has resolved");
+                    }
+                },1000)
+
+                cancelBtn.addEventListener("click", () =>{
+                    clearInterval(timer);
+                    reject("Promse can not be resolve");
+                })
+                })
+                return result;
+            
+        }
+        CoutDownPromise()
+        .then(msg => statusDiv.textContent = msg)
+        .catch(err => statusDiv.textContent = err);
+    </script>
+</body>
+</html>
