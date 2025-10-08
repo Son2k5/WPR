@@ -20,7 +20,27 @@
    * Signs the user in based on username and password inputs
    */
   async function signIn(e) {
+    e.preventDefault();
+    const username = document.querySelector("#username").value.trim();
+    const password = document.querySelector("#password").value.trim();
+    const result = qs('#result');
 
+    try{
+      const response = await fetch(API_URL, {
+        method: "POST",
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: `user=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
+      });
+      statusCheck(response);
+      const text = await response.text();
+      result.textContent = text;
+      result.style.color = text.includes("successful") ? "green" : "red";
+    }catch(e){
+      result.textContent = "Error connecting to server: " + e.message;
+      result.style.color = "red"; 
+    }
+
+    
   }
 
   /* ------------------------------ Helper Functions  ------------------------------ */

@@ -36,6 +36,33 @@ let lameJoke = [
     'response': 'All of the fans left.'
   }
 ];
+app.get("/jokebook/categories", (req, res) =>{
+  let result = "";
+  categories.forEach( e =>{
+    result += `a possible category is ${e}\n`;
+  })
+  res.type("text/plain").send(result.trim());
+})
 
+app.get("/jokebook/joke/:category", (req, res) =>{
+  const category = req.params.category;
+
+  let jokeList;
+  if(category === "funnyJoke"){
+    jokeList = funnyJoke;
+  }else if(category === "lameJoke"){
+    jokeList = lameJoke;
+  }else{
+    return res.json({error: `no category listed for ${category}`});
+  }
+
+  const randomValue=  Math.floor(Math.random() * jokeList.length);
+  res.json({
+    category: category,
+    joke: jokeList[randomValue]
+  });
+});
 app.use(express.static('public'));
-app.listen(8000);
+app.listen(8000, () => {
+  console.log("Jokebook API running at http://localhost:8000");
+});
