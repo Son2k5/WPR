@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Welcome, <%= checkUser.name %>!</h1>
+    <img src="<% checkUser.avatar %>" alt="avatar" width="100"/>
+
+    <p>Username: <%= checkUser.username %></p>
+    <p>Signup Time: <%= checkUser.signupTime %></p>
+    <a href="/login">Logout</a>
+
+</body>
+</html>
