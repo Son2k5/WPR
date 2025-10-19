@@ -3,7 +3,7 @@ const crypto = require('crypto');
 function EncryptText(plainText, key) {
     if (key.length !== 16) throw new Error("Invalid key length");
     const cipher = crypto.createCipheriv("aes-128-ecb", Buffer.from(key), null);
-    cipher.setAutoPadding(true); // đảm bảo padding PKCS#7
+    cipher.setAutoPadding(true); 
     let encrypted = cipher.update(plainText, "utf8", "base64");
     encrypted += cipher.final("base64");
     return encrypted;
