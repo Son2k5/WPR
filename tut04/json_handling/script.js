@@ -37,18 +37,20 @@
   function loadData(jsonData) {
     let countdown = 3;
     let container = id("dataContainer");
-    container.textContent = `Loading data in ${countdown} seconds...`;
 
-    let timer = setInterval( () =>{
-      countdown--;
+    container.textContent = `Loading data in ${countdown} secouds`;
+    let timer = setInterval(() =>{
+      
+      countdown --;
       if(countdown > 0){
-        container.textContent = `Loading data in ${countdown} seconds...`;
-      }
-      else{
+
+        container.textContent = `Loading data in ${countdown} secouds`;
+      }else{
         clearInterval(timer);
         displayData(jsonData);
       }
     },1000)
+    
     // Define the JSON object with sample data
 
 
@@ -69,8 +71,8 @@
    */
   function displayData(data) {
     let container = id("dataContainer");
-    container.innerHTML ="";
-    data.items.forEach(item=> {
+    container.innerHTML = "";
+    data.items.forEach(item => {
       let div = gen("div");
       div.classList.add("data-item");
       div.textContent = `${item.name}, Age: ${item.age}, Country: ${item.country}`;

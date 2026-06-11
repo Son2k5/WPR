@@ -1,11 +1,11 @@
-const http = require('http');
+const http = require("http");
 
-const server = http.createServer((req, res) => {
+const server = http.createServer((req, res) =>{
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
-    res.end("Hello World\n");
-});
+    res.end("Hello World \n");
+})
 
-server.listen(8000, () => {
-    console.log('Server running at http://localhost:8000/');
-});
+server.listen(8000 ,() =>{
+    console.log("http://localhost:8000/")
+})

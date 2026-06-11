@@ -2,6 +2,8 @@
  * JS for blog post section exercise
  */
 "use strict";
+
+
 (function() {
 
   window.addEventListener("load", init);
@@ -17,38 +19,37 @@
    * adds a blog entry to the blog post page
    */
   function addEntry() {
-    let date = id("date").value.trim();
-    let text = id("entry").value.trim();
+    const date = document.querySelector("#date").value.trim();
+    const text = document.querySelector("#entry").value.trim();
 
-    if (date === "" || text === "") {
-      alert("Please enter both a date and your thoughts!");
+    if(date === "" || text === ""){
+      alert("Fill the blank");
       return;
     }
 
-    let article = gen("article");
+    let article = document.createElement("article");
     article.classList.add("post");
 
-    let h3 = gen("h3");
-    h3.textContent = "Date: " + date;
+    let h3 = document.createElement("h3");
+    h3.textContent = date;
     article.appendChild(h3);
 
-    let p = gen("p");
-    p.textContent = "Entry: " + text;
+    let p = document.createElement("p");
+    p.textContent = text;
     article.appendChild(p);
 
-    id("posts").appendChild(article);
+    document.getElementById("posts").appendChild(article);
 
-    id("date").value = "";
-    id("entry").value = "";
+    document.getElementById("date").value ="";
+    document.getElementById("entry").value ="";
 
-    article.addEventListener("dblclick", function() {
+    article.addEventListener("dblclick",() =>{
       article.remove();
-      if (qsa(".post").length < 3) {
+      if(qsa(".post").length < 3){
         qs("button").disabled = false;
       }
     });
-
-    if (qsa(".post").length >= 3) {
+    if(qsa(".post").length>=3){
       qs("button").disabled = true;
     }
   }

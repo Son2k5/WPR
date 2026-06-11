@@ -13,8 +13,8 @@
    */
   function init() {
     let bugs = qsa("#bug-container img");
-    for (let i = 0; i < bugs.length; i++) {
-      bugs[i].addEventListener("click", whackBug);
+    for(let bug of bugs){
+      bug.addEventListener("click", whackBug);
     }
   }
 
@@ -23,19 +23,16 @@
    * whacks the clicked bug and increments the score. The bug cannot be whacked again afterwards.
    */
  function whackBug() {
-  let score = id("score");
-
-  
-  if (!this.classList.contains("whacked")) {
-    this.src = "bug-whacked.png";       
-    this.classList.add("whacked");     
-
-    
+  let score = qs("#score");
+  if(!this.classList.contains("whacked")){
+    this.classList.add("whacked");
+    this.src="bug-whacked.png";
     let current = parseInt(score.textContent);
-    score.textContent = current + 1;
+    let total = current + 1;
 
-    
-    if (parseInt(score.textContent) === 24) {
+    score.textContent = total;
+
+    if(parseInt(score.textContent) == 24){
       qs("#game p").textContent = "All bugs have been whacked";
     }
   }

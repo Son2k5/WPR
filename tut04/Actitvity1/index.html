@@ -7,16 +7,14 @@
 </head>
 <body>
     <script>
-        let PromiseRun = new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve("Promise one is done!");
+        let promiseRun = new Promise((resolve, reject) =>{
+            setTimeout(()=>{
+                resolve("Promise is done")
             }, 5000);
         });
-
-        PromiseRun.then(msg => console.log(msg));
-
+        promiseRun.then( msg => console.log((msg)));
         async function runPromise() {
-            let result = await PromiseRun;
+            let result = await promiseRun;
             console.log(result);
         }
         runPromise();

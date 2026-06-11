@@ -1,4 +1,4 @@
-body{ 
+body{
     background-color: black;
     display: flex;
     justify-content: center;
@@ -13,12 +13,13 @@ body{
     border: 2px solid gray;
 }
 .circle{
-    border-radius: 50%;
-    background-color: red;
-    width: 120px;
-    height: 120px;
     position: absolute;
-    top: 50%;
+    background-color: red;
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    top:50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
 }

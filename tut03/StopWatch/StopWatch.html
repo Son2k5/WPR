@@ -3,33 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>StopWatch</title>
 </head>
 <body>
-    <h1> StopWatch </h1>
+    <h1>StopWatch</h1>
+    <p id="display">0</p>
     <button id="stopwatch">Start/Pause</button>
-    <button id="reset">reset</button>
-    <script>
-        "use strict"
-        let timeId = null;
-        let reset = document.getElementById("reset");
-        let count = 0;
+    <button id="reset">Reset</button>
 
-        document.getElementById("stopwatch").addEventListener("click",function() {
-            if(timeId === null){
+    <script>
+        "use strict";
+        
+        let timeId = null;
+        let count = 0;
+        
+        // Lấy phần tử hiển thị
+        const display = document.getElementById("display");
+        
+        // Start/Pause button
+        document.getElementById("stopwatch").addEventListener("click", () => {
+            if (timeId === null) {
+                // Start
                 timeId = setInterval(() => {
                     count++;
-                    console.log(count + " seconds");
+                    display.textContent = count;
                 }, 1000);
-            }else{
+            } else {
+                // Pause
                 clearInterval(timeId);
                 timeId = null;
             }
         });
-        reset.addEventListener("click", function() {
+        
+        // Reset button - ĐẶT RIÊNG BIỆT
+        document.getElementById("reset").addEventListener("click", () => {
+            // Dừng interval nếu đang chạy
+            if (timeId !== null) {
+                clearInterval(timeId);
+                timeId = null;
+            }
+            
+            // Reset count
             count = 0;
-            console.log("reset to 0 seconds");
-        })
+            display.textContent = "Reset to 0";
+            
+            // Sau 1 giây hiển thị lại 0
+            setTimeout(() => {
+                display.textContent = count;
+            }, 1000);
+        });
     </script>
 </body>
 </html>

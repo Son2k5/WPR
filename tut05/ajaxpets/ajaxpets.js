@@ -14,10 +14,11 @@
    */
   function init() {
     // TODO
-    let RadioValue = qsa("input[name = 'animal']");
+    let RadioValue = document.querySelectorAll("input[name = 'animal']");
     RadioValue.forEach(radio =>{
       radio.addEventListener("change", makeRequest);
-    });
+    })
+    
   }
 
   /**
@@ -26,36 +27,32 @@
   async function makeRequest() {
     // TODO
     try{
-      let animal = qs("input[name='animal']:checked").value;
-      let FullUrl = url + "?animal=" + animal;
-
-      let result = await fetch(FullUrl);
+      let animal = qs("input[name = 'animal']:checked").value;
+      let Fullurl = url + "?animal="+animal;
+      let result = await fetch(Fullurl);
       await statusCheck(result);
-
       let text = await result.text();
       let lines = text.trim().split("\n");
-
       RenderImages(lines);
-      
     }catch(e){
       console.error("Error fetching pets:" + e);
       id("pictures").textContent = "Can not upload image ";
     }
+    
   }
 
   /**
    * TODO: Implement any other functions you need
    */
   function RenderImages(urls){
-    let imgContainer = id("pictures");
-    imgContainer.innerHTML = "";
-
-    urls.forEach( link =>{
+    let imageContainer = id("pictures");
+    imageContainer.innerHTML ="";
+    urls.forEach(link =>{
       let img = document.createElement("img");
       img.src = link.trim();
       img.alt = "Pet";
-      imgContainer.appendChild(img);
-    });
+      imageContainer.appendChild(img);
+    })
 
     
   }

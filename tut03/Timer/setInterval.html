@@ -6,21 +6,22 @@
     <title>Document</title>
 </head>
 <body>
+    <button id="btn">Press</button>
     <script>
-        function Countdown() {
-            let count = 3;
-            let intervalId = setInterval(() =>{
+        function Countdown(){
+            let count  =3;
+            let interval = setInterval(() =>{
                 if(count > 0){
                     console.log(count);
-                    count--;
+                    count --;
+                }else{
+                    console.log("go");
+                    clearInterval(interval);
                 }
-                else{
-                    console.log("Go!");
-                    clearInterval(intervalId);
-                }
-            },1000);
+            }, 1000)
         }
-        Countdown();
+        document.getElementById("btn")
+        .addEventListener("click", Countdown);
     </script>
 </body>
 </html>

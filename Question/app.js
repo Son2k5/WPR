@@ -1,24 +1,40 @@
 const express = require('express');
+const mysql = require('mysql2');
+
+// (1) Connect to the database
+const connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '123456',
+    database: 'tut09'
+});
+
 const app = express();
-const path = require("path");
-const { title } = require('process');
+app.get('/games/:id', async(req, res) => {
+    const gameId = req.params.id;
+    
+    // (2) Retrieve the game with the id from the URL
+    const query = 'SELECT id, name, release_year FROM games WHERE id = ?';
+    
+    connection.query(query, [gameId], (error, results) => {
+        if (error) {
+            return res.status(500).json({ error: error.message });
+        }
+        
+        if (results.length === 0) {
+            return res.status(404).json({ error: 'Game not found' });
+        }
+        
 
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views"));
+        const game = results[0];
+        res.json({
+            id: game.id,
+            name: game.name,
+            release_year: game.release_year
+        });
+    });
+});
 
-app.get("/", (req, res) =>{
-    res.render("home",{title: "Home"})
-})
-app.get("/contact",(req, res) =>{
-    res.render("contact", {title: "Contact us "})
-})
-app.get("/service",(req, res) =>{
-    res.render("service", {title: "Service"})
-})
-app.get("/about",(req, res) =>{
-    res.render("about", {title: "About us "})
-})
-
-app.listen(3000, () =>{
-    console.log('server listen on: http://localhost:3000');
-})
+app.listen(3000, () => {
+    console.log('Server running on port 3000');
+});

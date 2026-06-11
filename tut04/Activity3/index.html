@@ -10,34 +10,29 @@
     <button id="cancelBtn">Cancel Promise</button>
     <div id="status"></div>
     <script>
-        const cancelBtn = document.getElementById("cancelBtn");
+        const btn = document.getElementById("cancelBtn");
         const statusDiv = document.getElementById("status");
-
-        function CoutDownPromise() {
-            const result = new Promise((resolve, reject) =>{
-                let count = 5;
-                statusDiv.textContent = `Promise resolve in ${count} seconds`;
-                const timer = setInterval(() =>{
-                    count--;
-                    if(count > 0){
-                        statusDiv.textContent = `Promise resolve in ${count} seconds`;
-                    }else{
-                        clearInterval(timer);
-                        resolve("Promise has resolved");
-                    }
-                },1000)
-
-                cancelBtn.addEventListener("click", () =>{
+        let PromiseRun = new Promise((resolve, reject) =>{
+            let count = 3;
+            const timer = setInterval(() =>{
+                count--;
+                if(count > 0){
+                    statusDiv.textContent = `Promise resolve in ${count} seconds`;
+                }else{
                     clearInterval(timer);
-                    reject("Promse can not be resolve");
-                })
-                })
-                return result;
-            
-        }
-        CoutDownPromise()
-        .then(msg => statusDiv.textContent = msg)
-        .catch(err => statusDiv.textContent = err);
+                    resolve("Promise has been resolve")
+                }
+            },1000);
+
+            btn.addEventListener("click", () =>{
+                clearInterval(timer);
+                reject("Promise can not be resolve");
+            })
+
+       })
+
+       PromiseRun.then(msg => statusDiv.textContent = msg).
+       catch(msg => statusDiv.textContent = msg);
     </script>
 </body>
 </html>

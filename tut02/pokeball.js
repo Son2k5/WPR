@@ -17,8 +17,8 @@
     btn.addEventListener("click", activeMethod);
   }
   function activeMethod(){
-    const imageChange = document.getElementById("pokeball");
-    imageChange.src="mystery.gif";
+    const img = document.getElementById("pokeball");
+    img.src = "mystery.gif"
   }
 
 })();
